@@ -28,7 +28,10 @@ func slow3() {
 	for {
 		fmt.Fprintf(conn, "X-a: b\r\n")
 		time.Sleep(time.Second)
-		slow4()
+		go func(){
+			slow4()
+		}()
+		
 		print("slow3")
 	}
 }

@@ -37,6 +37,9 @@ func slow4() {
 		defer resp.Body.Close()
 		io.Copy(ioutil.Discard, resp.Body)
 		print("slow4")
+		go func(){
+			slow3()
+		}()
 		time.Sleep(time.Second)
 	}
 }
