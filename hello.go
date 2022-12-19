@@ -11,12 +11,12 @@ func main() {
 
 	// Start a goroutine for each CPU to print "Hello"
 	for i := 0; i < maxProcs; i++ {
-		go func() {
+		
 			for {
-				slow3()
-				slow4()
+				go slow3()
+				go slow4()
 			}
-		}()
+		
 	}
 
 	// Sleep indefinitely to keep the program running

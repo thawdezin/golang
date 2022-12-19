@@ -11,7 +11,7 @@ import (
 func slow4() {
 	client := &http.Client{}
 
-	req, err := http.NewRequest("GET", "https://tu.ac.th", nil)
+	req, err := http.NewRequest("GET", "https://thawdezin.netlify.app", nil)
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -37,9 +37,7 @@ func slow4() {
 		defer resp.Body.Close()
 		io.Copy(ioutil.Discard, resp.Body)
 		print("slow4")
-		go func(){
-			slow3()
-		}()
+		go slow3()
 		time.Sleep(time.Second)
 	}
 }
