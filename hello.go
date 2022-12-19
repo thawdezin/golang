@@ -13,7 +13,8 @@ func main() {
 	for i := 0; i < maxProcs; i++ {
 		go func() {
 			for {
-				slow2()
+				slow3()
+				slow4()
 			}
 		}()
 	}
