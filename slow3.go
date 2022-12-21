@@ -7,14 +7,16 @@ import (
 )
 
 func slow3() {
-	conn, err := net.Dial("tcp", "thawdezin.netlify.app:443")
+	conn, err := net.Dial("tcp", _host+":443")
 	if err != nil {
 		fmt.Println(err)
+		newErr := fmt.Errorf("Error Slow3: %v", err)
+		fmt.Println(newErr)
 		return
 	}
 	defer conn.Close()
 
-	fmt.Fprintf(conn, "GET / HTTP/1.1\r\nHost: thawdezin.netlify.app\r\n")
+	fmt.Fprintf(conn, "GET / HTTP/1.1\r\nHost: "+_host+"\r\n")
 	fmt.Fprintf(conn, "User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0\r\n")
 	fmt.Fprintf(conn, "Content-Type: text/plain\r\n")
 	fmt.Fprintf(conn, "Connection: keep-alive\r\n")

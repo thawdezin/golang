@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func main() {
+func main1() {
 	// Get the maximum number of CPUs that can be executing simultaneously
 	maxProcs := runtime.GOMAXPROCS(0)
 
@@ -13,8 +13,8 @@ func main() {
 	for i := 0; i < maxProcs; i++ {
 		
 			for {
-				go slow3()
 				go slow4()
+				
 			}
 		
 	}

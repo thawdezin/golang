@@ -5,16 +5,34 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
+	// "net/url"
 	"time"
 )
 
 func slow4() {
+	// proxyURL, err := url.Parse("http://74.208.177.198:80")
+	// if err != nil {
+	// 	//fmt.Println(err)
+	// 	newErr := fmt.Errorf("Proxy Error: %v", err)
+	// 	fmt.Println(newErr)
+	// 	return
+	// }
+
+	// transport := &http.Transport{
+	// 	Proxy: http.ProxyURL(proxyURL),
+	// }
+	// client1 := &http.Client{Transport: transport}
+	// print(client1)
+
 	client := &http.Client{}
 
-	req, err := http.NewRequest("GET", "https://thawdezin.netlify.app", nil)
+	req, err := http.NewRequest("GET", _url, nil)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
+		newErr := fmt.Errorf("Error occurred while creating HTTP request: %v", err)
+		fmt.Println(newErr)
 		return
+
 	}
 	req.Header.Set("User-Agent", "Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0")
 	req.Header.Set("Content-Type", "text/plain")
@@ -31,7 +49,8 @@ func slow4() {
 
 		resp, err := client.Do(req)
 		if err != nil {
-			fmt.Println(err)
+			newErr := fmt.Errorf("Slow4 inner For loop Error: %v", err)
+			fmt.Println(newErr)
 			return
 		}
 		defer resp.Body.Close()
