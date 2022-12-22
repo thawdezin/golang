@@ -1,0 +1,36 @@
+package main
+
+import (
+	"crypto/tls"
+	"encoding/json"
+	"fmt"
+	"math"
+	"math/rand"
+	"net"
+	"os"
+	"os/exec"
+	"path/filepath"
+	"regexp"
+	"strings"
+	"sync"
+	"time"
+	"unicode/utf8"
+
+	"golang.org/x/net/http2"
+	"golang.org/x/net/http2/hpack"
+	"golang.org/x/net/idna"
+	"golang.org/x/net/ipv4"
+	"golang.org/x/net/ipv6"
+	"golang.org/x/net/proxy"
+	"golang.org/x/net/publicsuffix"
+
+	"github.com/cloudflare/cloudscraper"
+	"github.com/gen2brain/icmplib"
+	"github.com/gocql/gocql"
+	"github.com/google/uuid"
+	"github.com/sdg-tweaks/pyroxy"
+	"github.com/sdg-tweaks/pyroxy/proxy"
+	"github.com/sdg-tweaks/pyroxy/proxy/checker"
+	"github.com/sdg-tweaks/pyroxy/proxy/utils"
+	"github.com/sdg-tweaks/pyroxy/tools"
+)
