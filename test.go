@@ -23,7 +23,7 @@ func runFunction() {
 	for {
 		// code to run function goes here
 
-		slow4()
+		from1()
 		time.Sleep(1 * time.Second)
 	}
 }

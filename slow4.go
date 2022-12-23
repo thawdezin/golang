@@ -5,6 +5,7 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
+
 	// "net/url"
 	"time"
 )
@@ -56,7 +57,7 @@ func slow4() {
 		defer resp.Body.Close()
 		io.Copy(ioutil.Discard, resp.Body)
 		print("slow4")
-		go slow3()
+		//go slow3()
 		time.Sleep(time.Second)
 	}
 }
