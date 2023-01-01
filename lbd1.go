@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func main() {
+func lbd1() {
 	// Set up a client with the default transport
 	client := http.Client{}
 
